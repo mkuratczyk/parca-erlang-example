@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: parca-erlang-example
+  name: parca-erlang-example
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: parca-erlang-example
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: parca-erlang-example
+    spec:
+      containers:
+      - name: parca-erlang-example
+        image: mkuratczyk/parca-erlang-example:0.7
+        env:
+        - name: ERL_FLAGS
+          value: "+JPperf map"
